@@ -23,7 +23,6 @@ jobs:
         pip install lxml
     - name: SignIn
       run: |
-        sudo cp -p ./chromedriver /usr/bin
-        chmod -R 777 /usr/bin/chromedriver
+       
         python ./tiwen.py
      
