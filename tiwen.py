@@ -1,3 +1,4 @@
+#coding=utf-8
 import requests as r
 from lxml import etree
 import time
