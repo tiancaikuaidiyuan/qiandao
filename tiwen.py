@@ -3,16 +3,13 @@ from lxml import etree
 import time
 import smtplib
 import random
-from email.mime.text import MIMEText
-from email.header import Header
+
+
 from time import sleep
 a = random.uniform(36.3,36.7)
 a= str(a)[:4:]
 #设填写的体温a是36.3~36.7的随机数
-my_email = "z1564356842@163.com" #此处是python发送邮件利用的邮箱
-send_mail = "z1564356842@163.com" #此处是接收填写情况的邮箱
-license_code = "ZMYBZUFNFWWMWKHZ" #发送邮箱的pop授权码
-smtp_server = "smtp.163.com"  # qq smtp 的服务器
+
 #此处是找到当前时间戳定位url
 timetamp = time.mktime(time.localtime())
 timetamp = int(timetamp)
@@ -20,25 +17,7 @@ timetamp = int(timetamp)
 url="http://xscfw.hebust.edu.cn/survey/ajaxLogin" #登录链接
 url2="http://xscfw.hebust.edu.cn/survey/index"   #获取sid链接
 url3=f"http://xscfw.hebust.edu.cn/survey/surveySave?timestamp={timetamp}" #填报体温的地址
-def send_email(content):
-    #发送邮件函数
-    try:
-        if content == "未完成":
-            msg = MIMEText(f"你尚未完成填写+你将要填写的体温是{a}","plain","utf-8")
-        else:
-            msg = MIMEText(f"你已完成填写，无须再填写", "plain", "utf-8")
-        #判断填写情况并发送邮件
-        msg['From'] = Header(my_email)
-        msg['To'] = Header(send_mail)
-        msg['Subject'] = Header("健康填报情况")
-        server = smtplib.SMTP_SSL(host=smtp_server)
-        server.connect(smtp_server,465)
-        server.login(my_email,password=license_code)
-        server.sendmail(my_email,send_mail,msg.as_string())
-        server.quit()
-        #连接服务器
-    except:
-        print('error')
+
         #程序运行失败的报错信息
 def tianbao():
     #填报程序
@@ -47,10 +26,13 @@ def tianbao():
         timetamp = int(timetamp)
         rep= r.post(url=url3,params=data,headers=header,cookies=cookies)
         print("填报成功")
+
     except:
         print("填报出错")
 
 #账号信息
+name="张志轩"
+xuehao="19L0252071"
 param={
     "stuNum": "19L0252071",#学号
     "pwd": "0102022011",#密码
@@ -123,11 +105,12 @@ while True:
         if 100000 <= now_time <= 170000:
             print("符合时间要求，开始执行")
             if content[0] == '已完成':
-                send_email('已完成')
+                print('您已填写完毕，不用填写')
                 sleep(100)
+
                 break
             if content[0] =='未完成':
-                    send_email('未完成')
+                    print('您为填写，为您填写')
                     tianbao()
                     sleep(100)
                     break
