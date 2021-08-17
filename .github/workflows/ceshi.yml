@@ -1,4 +1,4 @@
-name: auto tiwen
+name: ceshi tiwen
 
 on:
   workflow_dispatch:
