@@ -11,10 +11,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-python@v2
-    - run:  python  pip install requests
-            python  pip install lxml
-            python  pip install email.mime.text
-            python  pip install email.header
-           
-            python ./tiwen.py
+    - run: pip install -r ./requirements.txt
+    - run: python ./tiwen.py
 
