@@ -16,12 +16,6 @@ smtp_server = "smtp.163.com"  # qq smtp 的服务器
 #此处是找到当前时间戳定位url
 timetamp = time.mktime(time.localtime())
 timetamp = int(timetamp)
-#账号信息
-param={
-    "stuNum": "19L0252071",#学号
-    "pwd": "01020202011",#密码
-    "vcode": "",
-}
 #各个链接
 url="http://xscfw.hebust.edu.cn/survey/ajaxLogin" #登录链接
 url2="http://xscfw.hebust.edu.cn/survey/index"   #获取sid链接
@@ -56,12 +50,18 @@ def tianbao():
     except:
         print("填报出错")
 
-
-
+#账号信息
+param={
+    "stuNum": "19L0252071",#学号
+    "pwd": "0102022011",#密码
+    "vcode": "",
+}
 #
 header={
 "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36 Edg/90.0.818.62"
 }
+
+
 while True:
     #登录程序
     try:
@@ -121,19 +121,19 @@ while True:
         now_time=time.strftime("%H%M%S",time.localtime())
         now_time = int(now_time)
         if 100000 <= now_time <= 170000:
-
             print("符合时间要求，开始执行")
             if content[0] == '已完成':
                 send_email('已完成')
-                sleep(60)
+                sleep(100)
+                break
             if content[0] =='未完成':
                     send_email('未完成')
                     tianbao()
-                    sleep(60)
+                    sleep(100)
+                    break
         else:
             print("填写时间未到")
-            print(now_time)
-            send_email('时间未到')
             break
     except:
         print("判断失败")
+        break
