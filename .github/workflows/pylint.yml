@@ -1,31 +1,17 @@
-name: XMU AutoSignIn
+name: auto tiwen
 
 on:
-  push:
-  
   schedule:
     - cron: '0 3,4 * * *'
 
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python 3.9
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.9
-    - name: Install requirements
-      run: |
-        python -m pip install --upgrade pip
-        pip install lxml
-    - name: SignIn
-      run: |
-       
-        python ./tiwen.pyshell: /usr/bin/bash -e {0}
-  env:
-    pythonLocation: /opt/hostedtoolcache/Python/3.9.6/x64
-    LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.9.6/x64/lib
+    - uses: actions/setup-python@v2
+    - run: python ./AutoSignIn.py
+
      
