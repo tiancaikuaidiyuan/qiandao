@@ -23,8 +23,8 @@ def tianbao():
         return a
 #账号信息
 param={
-    "stuNum": "19L0252032",
-    "pwd": "0011064515",
+    "stuNum": "19L0252071",
+    "pwd": "0102022011",
     "vcode": "",
 }
 #
