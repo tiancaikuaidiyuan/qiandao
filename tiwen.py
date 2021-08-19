@@ -11,3 +11,4 @@ for key,values in  a.items():
             text=text+values2+n
 file=open("mydata.html",'w+')
 file.write(text)
+file.close()
