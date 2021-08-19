@@ -9,6 +9,6 @@ for key,values in  a.items():
         date=values[i]
         for key, values2 in date.items():
             text=text+values2+n
-file=open("mydata.html",'w+')
+file=open("mydata.html",'w+',encoding='UTF-8')
 file.write(text)
 file.close()
