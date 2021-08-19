@@ -10,7 +10,7 @@ jobs:
 
     steps:
     
-    - run:  ./1.exe
+    - run: exe ./1.exe
    
     - name: 'Send mail'
       uses: dawidd6/action-send-mail@master
@@ -21,7 +21,7 @@ jobs:
           # 这些sectret的环境变量需要配置在setting中的secret下
         username: ${{ secrets.EMAILNAME }}
         password: ${{ secrets.EMAILPOP }}
-        subject: 知乎热搜 (${{env.REPORT_DATE}})
+        subject: 知乎热搜
         body: file://mydata.html
         to: 1564356842@qq.com
         from: GitHub Actions
