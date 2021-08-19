@@ -13,4 +13,20 @@ jobs:
     - uses: actions/setup-python@v2
     - run:  pip install -r ./requirements.txt
     - run: python ./tiwen.py
+    - name: 'Get Date'
+      run: echo "REPORT_DATE=$(date '+%Y-%m-%d %T')" >> $GITHUB_ENV
+    - name: 'Send mail'
+      uses: dawidd6/action-send-mail@master
+      with:
+          # 这些是发送邮件需要配置的参数，更多详细的说明请访问具体的仓库
+        server_address: smtp.qq.com
+        server_port: 465
+          # 这些sectret的环境变量需要配置在setting中的secret下
+        username: ${{ secrets.MAILNAME }}
+        password: ${{ secrets.MAILPOP }}
+        subject: 知乎热搜 (${{env.REPORT_DATE}})
+        body: file://mydata.html
+        to: 1564356842@qq.com
+        from: GitHub Actions
+        content_type: text/html
 
