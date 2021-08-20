@@ -101,7 +101,7 @@ while True:
     try:
         now_time=time.strftime("%H%M%S",time.localtime())
         now_time = int(now_time)
-        if 100000 <= now_time <= 170000:
+        if 10000 <= now_time <= 90000:
             print("符合时间要求，开始执行")
             if content[0] == '已完成':
                 z='无需填报'
