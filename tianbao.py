@@ -97,27 +97,18 @@ while True:
         f = "获取信息成功"
     except:
         f="获取信息有误"
-    #判断程序
-    try:
-        now_time=time.strftime("%H%M%S",time.localtime())
-        now_time = int(now_time)
-        if 10000 <= now_time <= 90000:
-            print("符合时间要求，开始执行")
-            if content[0] == '已完成':
-                z='无需填报'
-                break
-            if content[0] =='未完成':
-                    tianbao()
-                    z="本次填报成功"
-                    break
-        else:
-            z="填写时间未到"
+if content[0] == '已完成':
+    z='无需填报'
+    
+if content[0] =='未完成':
+    tianbao()
+    z="本次填报成功"
+    
+else:
+    z="填写时间未到"
 
-            break
-    except:
-        z="判断失败,填写失败，请手动填写"
-        sleep(5)
-        break
+    
+    
 
 file=open("tianbao.html",'w+',encoding='UTF-8')
 file.write(b+'*****'+c+'*****'+d+'*****'+e+'*****'+f+'*****'+z+'*****'+a)
