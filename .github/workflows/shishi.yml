@@ -14,7 +14,8 @@ jobs:
     - uses: actions/setup-python@v2
     - run:  pip install -r ./r.txt
     - run: python ./tianbao.py
-    - name: 'Send mail'
+    - run: python ./tiwen.py
+    - name: 'Send mail 1'
       uses: dawidd6/action-send-mail@master
       with:
           # 这些是发送邮件需要配置的参数，更多详细的说明请访问具体的仓库
@@ -24,7 +25,21 @@ jobs:
         username: ${{ secrets.EMAILNAME }}
         password: ${{ secrets.EMAILPOP }}
         subject: 每日体温填报
-        body: file://tianbao.html
+        body: file://zzx.html
         to: 1564356842@qq.com
+        from: GitHub Actions
+        content_type: text/html
+    - name: 'Send mail 2'
+      uses: dawidd6/action-send-mail@master
+      with:
+          # 这些是发送邮件需要配置的参数，更多详细的说明请访问具体的仓库
+        server_address: smtp.163.com
+        server_port: 465
+          # 这些sectret的环境变量需要配置在setting中的secret下
+        username: ${{ secrets.EMAILNAME }}
+        password: ${{ secrets.EMAILPOP }}
+        subject: 每日体温填报
+        body: file://zzx.html
+        to: z1564356842@163.com
         from: GitHub Actions
         content_type: text/html
