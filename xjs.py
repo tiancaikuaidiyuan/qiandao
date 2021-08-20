@@ -114,13 +114,17 @@ while True:
         f = "获取信息有误"
         
         break
+if content[0] == '已完成':
+    z = '早已完成填报，无需填报'
+   
 
+elif content[0] == '未完成':
     tianbao()
-    
+    z = "本次填报成功"
     
 
-
-    
+else:
+    z = "填写时间未到,或填写失败，请稍后重试"
    
 
 file = open("xjs.html", 'w+', encoding='UTF-8')
