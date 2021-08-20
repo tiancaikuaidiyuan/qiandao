@@ -115,10 +115,10 @@ while True:
         
         break
 if content[0] == '已完成':
-    z = '无需填报'
+    z = '早已完成填报，无需填报'
    
 
-if content[0] == '未完成':
+elif content[0] == '未完成':
     tianbao()
     z = "本次填报成功"
     
