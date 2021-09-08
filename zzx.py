@@ -15,8 +15,8 @@ url3 = f"http://xscfw.hebust.edu.cn/survey/surveySave?timestamp={timetamp}"
 
 # 账号信息
 param = {
-    "stuNum": ${{ secrets.ID }},
-    "pwd": ${{ secrets.PASSWORD }},
+    "stuNum": "${{ secrets.ID }}",
+    "pwd": "${{ secrets.PASSWORD }}",
     "vcode": "",
 }
 #
