@@ -128,7 +128,7 @@ def tiwen(name):
         file.write(tname+newparam+ '==><br>' + b + '==><br>' + c + '==><br>' + d + '==><br>' + e + '==><br>' + f + '==><br>' + z + '==><br>' + a+"<br><hr>")
         file.close()
     else:
-        file = open("no.html", 'a', encoding='UTF-8')
+        file = open("no.html", 'a+', encoding='UTF-8')
         file.write(
             tname + newparam + '==><br>' + b + '==><br>' + c + '==><br>' + d + '==><br>' + e + '==><br>' + f + '==><br>' + z + '==><br>' + a + "<br><hr>")
         file.close()
