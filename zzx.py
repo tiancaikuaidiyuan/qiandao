@@ -31,10 +31,10 @@ try:
     cookiesJAR = response.cookies  # 获取cookies
     cookies = cookiesJAR.get_dict()  # 把cookies写成字典形式
     res = r.get(url=url2, headers=header, cookies=cookies, params=param)
-    b = "正在登录，即学校网页可以正常进入"
+    b = "学校网页可以正常进入"
 
 except:
-    b = "登录失败，即学校网页无法进入"
+    b = "学校网页无法进入"
 
 
 
@@ -117,5 +117,5 @@ else:
     z = "填写时间未到，或填写失败"
 
 file = open("zzx.html", 'w+', encoding='UTF-8')
-file.write(b + '*****' + c + '*****' + d + '*****' + e + '*****' + f + '*****' + z + '*****' + a)
+file.write(b + '==><br>' + c + '==><br>' + d + '==><br>' + e + '==><br>' + f + '==><br>' + z + '==><br>' + a)
 file.close()
