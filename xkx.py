@@ -39,10 +39,10 @@ def tiwen(name):
     param = xinxi[name]
     newparam=str(param)
     tname=name1[name]
-    print("填报中...")
+ 
     try:
         response = r.post(url=url, params=param, headers=header)
-        # sleep(20)
+        sleep(15)
         cookiesJAR = response.cookies  # 获取cookies
         cookies = cookiesJAR.get_dict()  # 把cookies写成字典形式
         res = r.get(url=url2, headers=header, cookies=cookies, params=param)
@@ -78,7 +78,7 @@ def tiwen(name):
     try:
         url5 = f'http://xscfw.hebust.edu.cn/survey/surveyEdit?id={sid}'
         rej = r.get(url=url5, cookies=cookies, headers=header)
-        # sleep(5)
+        sleep(5)
         rej.encoding = 'utf-8'
         html2 = etree.HTML(rej.text)
         stuId = html2.xpath('//*[@id="surveyForm"]/input[2]/@value')[0]
