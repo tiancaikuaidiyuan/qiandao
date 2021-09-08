@@ -15,56 +15,52 @@ header = {
 }
 
 # 账号信息
-name1={
-"0":"鲁响",
-"1":"陈璞",
-"2":"杜世千",
-"3":"孔伟",
-"4":"易志恒",
-"5":"张志轩",
+name1 = {
+    "0": "鲁响",
+    "1": "陈璞",
+    "2": "杜世千",
+    "3": "孔伟",
+    "4": "易志恒",
+    "5": "张志轩",
 }
-xinxi={
-"0":{"stuNum":"19L0252036","pwd":"Lc2#0106107017"},
-"1":{"stuNum":"19L0252056","pwd":"Lc2#0204070412"},
-"2":{"stuNum":"19L0252057","pwd":"Lc2#0008062156"},
-"3":{"stuNum":"19L0252060","pwd":"Lc2#0008165038"},
-"4":{"stuNum":"19L0252069","pwd":"Lc2#0002223013"},
-"5":{"stuNum":"19L0252071","pwd":"Lc2#0102022011"},
+xinxi = {
+    "0": {"stuNum": "19L0252036", "pwd": "Lc2#0106107017"},
+    "1": {"stuNum": "19L0252056", "pwd": "Lc2#0204070412"},
+    "2": {"stuNum": "19L0252057", "pwd": "Lc2#0008062156"},
+    "3": {"stuNum": "19L0252060", "pwd": "Lc2#0008165038"},
+    "4": {"stuNum": "19L0252069", "pwd": "Lc2#0002223013"},
+    "5": {"stuNum": "19L0252071", "pwd": "Lc2#0102022011"},
 }
 
 
 def tiwen(name):
-    a, b, c, d, e, f, z = '', '', '', '', '', '', ''
+    a, p, c, d, e, f, z = '', '', '', '', '', '', ''
     y = ''
-    param=xinxi[name]
+    param = xinxi[name]
+    newparam=str(param)
+    tname=name1[name]
     print("填报中...")
     try:
         response = r.post(url=url, params=param, headers=header)
-        sleep(15)
+        # sleep(20)
         cookiesJAR = response.cookies  # 获取cookies
         cookies = cookiesJAR.get_dict()  # 把cookies写成字典形式
-        b = response.content.decode('utf-8')
         res = r.get(url=url2, headers=header, cookies=cookies, params=param)
-        # print(res.content.decode('utf-8'))
+        b = "学校网页可以正常进入"
 
     except:
-        b = "登录失败，即学校网页无法进入"
-
-
+        b = "学校网页无法进入"
 
     # 获取完成情况
     try:
         res.encoding = 'uft-8'
         html = etree.HTML(res.text)
-
         content = html.xpath('/html/body/ul/li[1]/div/span/text()')
-        y=content[0]
+        y = content[0]
         c = "获取填报表单成功，即登录成功"
 
     except:
         c = "获取填报表单失败，即登录失败"
-
-
 
     # 获取当前日期要填的文档的sid
     try:
@@ -78,12 +74,11 @@ def tiwen(name):
     except:
         d = "获取当前日期要填的文档的sid失败"
 
-
     #####获取stuId和qid
     try:
         url5 = f'http://xscfw.hebust.edu.cn/survey/surveyEdit?id={sid}'
         rej = r.get(url=url5, cookies=cookies, headers=header)
-        sleep(5)
+        # sleep(5)
         rej.encoding = 'utf-8'
         html2 = etree.HTML(rej.text)
         stuId = html2.xpath('//*[@id="surveyForm"]/input[2]/@value')[0]
@@ -92,7 +87,6 @@ def tiwen(name):
 
     except:
         e = "获取stuId qid 失败"
-
 
     try:
         data = {
@@ -112,7 +106,6 @@ def tiwen(name):
     except:
         f = "获取信息有误"
 
-
     if y == '已完成':
         z = '早已完成填报，无需填报'
 
@@ -123,24 +116,25 @@ def tiwen(name):
             timetamp = int(timetamp)
             rep = r.post(url=url3, params=data, headers=header, cookies=cookies)
             a = "填报成功"
-
         except:
             a = "填报出错"
-        print(a)
+
 
 
     else:
         z = "填写时间未到，或填写失败"
+    if a=="填报成功":
+        file = open("yes.html", 'a', encoding='UTF-8')
+        file.write(tname+newparam+ '==><br>' + b + '==><br>' + c + '==><br>' + d + '==><br>' + e + '==><br>' + f + '==><br>' + z + '==><br>' + a+"<br><hr>")
+        file.close()
+    else:
+        file = open("no.html", 'a', encoding='UTF-8')
+        file.write(
+            tname + newparam + '==><br>' + b + '==><br>' + c + '==><br>' + d + '==><br>' + e + '==><br>' + f + '==><br>' + z + '==><br>' + a + "<br><hr>")
+        file.close()
 
-
-
-    file = open("xkx.html", 'a', encoding='UTF-8')
-    file.write(b + '*****' + c + '*****' + d + '*****' + e + '*****' + f + '*****' + z + '*****' + a)
-    file.close()
-
-  
 
 if __name__ == '__main__':
     for i in range(len(name1)):
-         tiwen(str(i))
-
+        newi=str(i)
+        tiwen(newi)
