@@ -26,7 +26,7 @@ jobs:
         username: ${{ secrets.EMAILNAME }}
         password: ${{ secrets.EMAILPOP }}
         subject: 每日体温填报
-        body: file://xkx.html
+        body: file://yes.html,file://no.html
         to: ${{ secrets.QQEMAIL }}
         from: GitHub Actions
         content_type: text/html
