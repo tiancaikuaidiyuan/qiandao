@@ -123,12 +123,16 @@ def tiwen(name):
 
     else:
         z = "填写时间未到，或填写失败"
+    file = open("yes.html", 'a', encoding='UTF-8')
+    file.close()
+    file = open("no.html", 'a', encoding='UTF-8')
+    file.close()
     if a=="填报成功":
         file = open("yes.html", 'a', encoding='UTF-8')
         file.write(tname+newparam+ '==><br>' + b + '==><br>' + c + '==><br>' + d + '==><br>' + e + '==><br>' + f + '==><br>' + z + '==><br>' + a+"<br><hr>")
         file.close()
     else:
-        file = open("no.html", 'a+', encoding='UTF-8')
+        file = open("no.html", 'a', encoding='UTF-8')
         file.write(
             tname + newparam + '==><br>' + b + '==><br>' + c + '==><br>' + d + '==><br>' + e + '==><br>' + f + '==><br>' + z + '==><br>' + a + "<br><hr>")
         file.close()
