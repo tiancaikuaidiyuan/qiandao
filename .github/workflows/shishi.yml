@@ -3,7 +3,7 @@ name: tiwentianbao
 on:
   workflow_dispatch:
   schedule:
-    - cron: '10 2,3 * * *'
+    - cron: '0 3 * * *'
 jobs:
   build:
 
